@@ -3,6 +3,7 @@
 #include <stdbool.h>
 
 #define WORDSIZE 255
+#define SLEN 20
 
 #ifndef CH17_EX8
 typedef struct item {
@@ -13,12 +14,12 @@ typedef struct item {
 #define MAXITEMS 10
 #else
 typedef struct kind {
-    char petkind[20];
+    char petkind[SLEN];
     struct kind * next;
 } PetKind;
 
 typedef struct item {
-    char petname[20];
+    char petname[SLEN];
     PetKind * petkinds;
 } Item;
 

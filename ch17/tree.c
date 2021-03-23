@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
-#define CH17_EX8
+//#define CH17_EX8
 #include "tree.h"
 //#define DEBUG
 
@@ -91,12 +91,15 @@ bool AddItem(const Item * pi, Tree * ptree)
     if ((find = SeekItem(pi, ptree).child) != NULL)
     {
         PetKind * pk = find->item.petkinds;
-        while (pk->next != NULL)
+        PetKind * pre;
+        while (pk != NULL)
         {
-            if (strcmp(pk->petkind, pi->petkinds) == 0)
+            if (strcmp(pk->petkind, pi->petkinds->petkind) == 0)
                 return false;
+            pre = pk;
+            pk = pk->next;
         }
-        pk->next = pi->petkinds;
+        pre->next = pi->petkinds;
         ptree->size++;
         return true;
     }
